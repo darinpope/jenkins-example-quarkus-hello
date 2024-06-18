@@ -8,8 +8,8 @@ spec:
   nodeSelector:
     kubernetes.io/arch: "amd64"
   containers:
-  - name: wolfi
-    image: cgr.dev/chainguard/wolfi-base
+  - name: maven
+    image: maven:3.9.7-eclipse-temurin-17
     command:
     - cat
     tty: true
@@ -33,10 +33,10 @@ spec:
     }
   }
   stages {
-    stage("pre-build") {
+    stage("verification") {
       steps {
-        container("wolfi") {
-            sh "cat /proc/version"
+        container("maven") {
+            sh "mvn --version"
         }
       }
     }
