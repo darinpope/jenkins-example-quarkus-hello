@@ -36,7 +36,25 @@ spec:
     stage("verification") {
       steps {
         container("maven") {
-            sh "mvn --version"
+          sh "mvn --version"
+        }
+      }
+    }
+    stage('readCache') {
+      steps {
+        readCache name: 'mvn-cache'
+      }
+    }
+    stage('build') {
+      steps {
+        container("maven") {
+          sh 'mvn clean package -Dquarkus.package.jar.type=uber-jar -Dmaven.repo.local=./maven-repo -DskipTests'
+        }
+      }
+      post {
+        success {
+          archiveArtifacts artifacts: 'target/*-runner.jar', followSymlinks: false
+          writeCache name: 'mvn-cache', includes: 'maven-repo/**'
         }
       }
     }
