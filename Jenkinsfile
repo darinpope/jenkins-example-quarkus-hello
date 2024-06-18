@@ -36,7 +36,7 @@ spec:
     stage("pre-build") {
       steps {
         container("wolfi") {
-            sh "cat /proc/version
+            sh "cat /proc/version"
         }
       }
     }
