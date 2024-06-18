@@ -15,10 +15,10 @@ spec:
     tty: true
     resources:
       requests:
-        memory: "512Mi"
+        memory: "1024Mi"
         cpu: "100m"
       limits:
-        memory: "512Mi"
+        memory: "1024Mi"
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
