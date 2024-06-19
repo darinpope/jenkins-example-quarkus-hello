@@ -33,10 +33,10 @@ spec:
     }
   }
   stages {
-    stage("verification") {
+    stage('tool verification') {
       steps {
         container("maven") {
-          sh "mvn --version"
+          sh 'mvn --version'
         }
       }
     }
